@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="upload.php" method="post" enctype="multipart/form-data">
+  {{ form.hidden_tag()  }}
+
+  {% for error in form.photo.errors %}
+    <span style = "color: rgb(255, 0, 21);">{{ error}}</span>
+  {% endfor %}
+
+<div class="row justify-content-center">
+  <div class="col-auto">
+    {{form.photo(class="form.control")}}
+  </div>
+  <div class="col-auto"> 
+    {{form.submit(class="btn btn-success")}}
+  </div>
+</div>
+
+</form>
+{% if file_url %}
+  <div class="mt-5">
+    <img src="{{ file_url }}" style="width: 400px;">
+  </div>
+{% endif %}
+<a class="btn btn-success" href="{{url_for('download')}}">Download</a>
+</body>
+</html>
